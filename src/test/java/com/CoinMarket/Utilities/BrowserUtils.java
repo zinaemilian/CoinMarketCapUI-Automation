@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -402,4 +403,48 @@ public class BrowserUtils {
     }
 
 
+    public List<String> getAllProducts(String expectedBrand, List<WebElement> actualBrands) {
+        List<String> brand = new ArrayList<String>();
+        Iterator<WebElement> itertorAllProdcs = actualBrands.iterator();
+        while (itertorAllProdcs.hasNext()) {
+            WebElement product = itertorAllProdcs.next();
+            if (product.getText().toUpperCase().contains(expectedBrand.toUpperCase())) {
+                brand.add(product.getText());
+            }
+
+        }
+        return brand;
+    }
+
+    public static void ClickBtnOption(String optionText, List<WebElement> optionWE) {
+        List<String> options = new ArrayList<String>();
+        Iterator<WebElement> itertorAllProdcs = optionWE.iterator();
+        while (itertorAllProdcs.hasNext()) {
+            WebElement product = itertorAllProdcs.next();
+            if (product.getText().toUpperCase().contains(optionText.toUpperCase())) {
+                System.out.println(product.getText());
+                product.click();
+            }
+        }
+
+    }
+    public static void ByExactOption(String optionText, List<WebElement> optionWE) {
+        List<String> options = new ArrayList<String>();
+        Iterator<WebElement> itertorAllProdcs = optionWE.iterator();
+        while (itertorAllProdcs.hasNext()) {
+            WebElement product = itertorAllProdcs.next();
+            if (product.getText().toUpperCase().contentEquals(optionText.toUpperCase())) {
+                System.out.println(product.getText());
+                product.click();
+                break;
+            }
+        }
+
+    }
+    public  List<String> pageContent(List<WebElement> contentWE)
+    {
+        return BrowserUtils.getElementsText(contentWE);
+    }
 }
+
+
