@@ -1,17 +1,17 @@
 package com.CoinMarket.Pojo;
 
 public class CryptoCurrency {
-    public String currencyName;
-    public String currencyCode;
-    public String currencyPrice;
-    public String currencyMarketCap;
+    private String currencyName;
+    private String currencyPrice;
+
+    private String currencyMarketCap;
+    private double amount;
 
     public CryptoCurrency() {
     }
 
-    public CryptoCurrency(String currencyName, String currencyCode, String currencyPrice, String currencyMarketCap) {
+    public CryptoCurrency(String currencyName, String currencyPrice, String currencyMarketCap) {
         this.currencyName = currencyName;
-        this.currencyCode = currencyCode;
         this.currencyPrice = currencyPrice;
         this.currencyMarketCap = currencyMarketCap;
     }
@@ -24,13 +24,6 @@ public class CryptoCurrency {
         this.currencyName = currencyName;
     }
 
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
-    }
 
     public String getCurrencyPrice() {
         return currencyPrice;
@@ -46,5 +39,13 @@ public class CryptoCurrency {
 
     public void setCurrencyMarketCap(String currencyMarketCap) {
         this.currencyMarketCap = currencyMarketCap;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }
