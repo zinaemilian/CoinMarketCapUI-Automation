@@ -1,7 +1,8 @@
 package com.CoinMarket.Step_Definitions;
 
-
 import com.CoinMarket.Pages.HomePage;
+import com.CoinMarket.Pojo.CryptoCurrency;
+import com.CoinMarket.Utilities.BrowserUtils;
 import com.CoinMarket.Utilities.BrowserUtils;
 import com.CoinMarket.Utilities.ConfigurationReader;
 import com.CoinMarket.Utilities.Driver;
@@ -9,86 +10,61 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PageContent_Stepdefs {
     HomePage homePage =new HomePage();
-    List<String> pagePriceTextsFirst = new ArrayList<>();
-    List<String> pagePriceTextsLast = new ArrayList<>();
+    private List<CryptoCurrency> tableDateByRow20;
+    private List<CryptoCurrency> tableDateAfterFilters;
+
     @Given("I navigate to the home page")
     public void iNavigateToTheHomePage()  {
         Driver.get().get(ConfigurationReader.get("url"));
         homePage.closeGetMoreOutOfOurSearchFeaturePopUp();
-        System.out.println("Test is next");
         homePage.closeMakeThisTableWorkForYou();
-        System.out.println("Test is click");
         homePage.closeCookiePolicyBanner();
-        System.out.println("Test is cookie");
+
     }
 
     @When("I show rows by {string}")
     public void iShowRowsBy(String rowNumber) {
-
         homePage.filterByNumberOfRows(rowNumber);
+        homePage.scrollToUpToPage();
 
     }
-
-    @And("I capture all page content")
-    public void iCaptureAllPageContent() {
-
-      pagePriceTextsFirst= homePage.PageContentsMarketCap( "MarketCapFirst");
+    @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page before applying filters")
+    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageBeforeApplyingFilters() {
+        tableDateByRow20 = homePage.getTableData();
     }
-
     @And("I filter by {string} - {string}")
-    public void iFilterByAlgorithmPoW(String algorytm, String poW)
-    {
-        homePage.ScrollUpToPage();
+    public void iFilterByAlgorithmPoW(String algorytm, String poW)  {
+
         homePage.ApplyFilters();
-        System.out.println( "applyfilters");
         homePage.ApplyFilters(algorytm);
-        System.out.println( "applyfilters by algorith");
         homePage.ApplyAlgorithms(poW);
-        System.out.println( " aplyalgorith by Pow");
+
     }
-
-
-    @And("I follow by {string}")
-    public void iFollowBy(String arg0) {
-        BrowserUtils.waitFor(3);
+    @And("I follow by + Filter")
+    public void iFollowByFilter() {
         homePage.AddFilter();
-        System.out.println( "filter Added");
-
     }
 
-    @And("I toggle {string}")
-    public void iToggle(String arg0) {
-        System.out.println( "Test is 3");
+    @And("I toggle Mineable")
+    public void iToggleMineable() {
+
         homePage.ClickMineable();
-      //  _homePage.ClickMaybeLater();
-
     }
-
-    @And("I select {string}")
-    public void iSelect(String arg0) {
-        System.out.println( "Test is 4");
+    @And("I select All Cryptocurrencies")
+    public void iSelectAllCryptocurrencies() {
         homePage.ClickAllCryp();
     }
 
-
-
-    @Then("I should see the comparisan is true")
-    public void iShouldSeeTheComparisanIsTrue() {
-
-      pagePriceTextsLast= homePage.PageContentsMarketCap("MarketCapLast");
-    }
-
-
     @And("I select {string} from filter options")
     public void iSelectFromFilterOptions(String coins) {
-        homePage.SelectCoin();
-        System.out.println( "coin 5");
+        homePage.SelectCoin(coins);
     }
 
     @And("I select prize and set min value to {string} and max {string}")
@@ -97,5 +73,23 @@ public class PageContent_Stepdefs {
         homePage.senKeysPriceRange(min,max);
         homePage.ApplyPriceRageFilter();
         homePage.ApplyShowResults();
+    }
+    @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page after applying filters")
+    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageAfterApplyingFilters() {
+        tableDateByRow20 = homePage.getTableData();
+        System.out.println(tableDateByRow20.size());
+    }
+    @And("I capture Price and MarketCap for {string} cryptocurrency from the content of the page after applying filters")
+    public void iCapturePriceAndMarketCapForCryptocurrencyFromTheContentOfThePageAfterApplyingFilters(String bitcoin) throws InterruptedException {
+        BrowserUtils.waitFor(2);
+        BrowserUtils.ScrollDownAndUp();
+
+        tableDateAfterFilters = homePage.getTableData();
+        System.out.println(tableDateAfterFilters.size());
+    }
+
+    @Then("I should see that number of contents is decreased")
+    public void iShouldSeeThatNumberOfContentsIsDecreased() {
+        //Assert.assertTrue(tableDateAfterFilters.size()<tableDateByRow20.size());
     }
 }
