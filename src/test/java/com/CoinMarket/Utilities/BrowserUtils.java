@@ -318,7 +318,7 @@ public class BrowserUtils {
                 element.click();
                 return;
             } catch (WebDriverException e) {
-                waitFor(1);
+                waitFor(2);
             }
         }
     }
@@ -384,6 +384,26 @@ public class BrowserUtils {
         new WebDriverWait(Driver.get(),
                 time).until(ExpectedConditions.presenceOfElementLocated(by));
     }
+    public static void ScrollUp() throws InterruptedException {
+
+
+        JavascriptExecutor jse = (JavascriptExecutor)Driver.get();
+
+            jse.executeScript("window.scrollBy(0,-350)");
+        }
+
+
+
+    public static void ScrollDown() throws InterruptedException {
+
+
+        JavascriptExecutor js = (JavascriptExecutor)Driver.get();
+
+        js.executeScript("window.scrollBy(0,350)", "");
+
+    }
+
+
     public static void ScrollDownAndUp() throws InterruptedException {
 
 
@@ -401,7 +421,6 @@ public class BrowserUtils {
         }
 
     }
-
 
     public List<String> getAllProducts(String expectedBrand, List<WebElement> actualBrands) {
         List<String> brand = new ArrayList<String>();
@@ -445,6 +464,5 @@ public class BrowserUtils {
     {
         return BrowserUtils.getElementsText(contentWE);
     }
+
 }
-
-
