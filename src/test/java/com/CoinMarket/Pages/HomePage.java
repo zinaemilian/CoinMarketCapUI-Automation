@@ -58,6 +58,8 @@ public class HomePage extends BasePage {
     public WebElement applyPriceRangeFilter;
     @FindBy(xpath = "//button[text()='Show results']")
     public WebElement showResults;
+    @FindBy(css = "span.icon-Chevron-up")
+    public WebElement pageUpArrrow;
 
 
   public WebElement allCryptoCurrenciesMoreFiltersGetText(String option) {
@@ -170,6 +172,10 @@ public class HomePage extends BasePage {
             BrowserUtils.scrollToElement(showRows);
         }
     }
+    public void clickUp(){
+    BrowserUtils.waitForClickablility(pageUpArrrow,Duration.ofSeconds(3));
+    pageUpArrrow.click();
+}
 
 
     public List<CryptoCurrency> getTableData() {
