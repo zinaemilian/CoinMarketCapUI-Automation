@@ -124,7 +124,7 @@ public class HomePage extends BasePage {
 
         BrowserUtils.waitForClickablility(toggleMnineable, Duration.ofSeconds(5));
         toggleMnineable.click();
-        System.out.println("toggle  is clicked");
+       
     }
 
     public void ClickAllCryp() {
@@ -142,7 +142,7 @@ public class HomePage extends BasePage {
 
     public void SelectPrice() {
         BrowserUtils.clickWithTimeOut(pricebtn, 3);
-        System.out.println("price  is clicked");
+        
     }
 
     public void senKeysPriceRange(String min, String max) {
@@ -156,9 +156,8 @@ public class HomePage extends BasePage {
 
     public void ApplyPriceRageFilter() {
         BrowserUtils.waitForClickablility(applyPriceRangeFilter, Duration.ofSeconds(2));
-        System.out.println("apply rage filetr");
         BrowserUtils.clickWithTimeOut(applyPriceRangeFilter, 3);
-        System.out.println("apply Rage filter");
+       
     }
 
     public void ApplyShowResults() {
