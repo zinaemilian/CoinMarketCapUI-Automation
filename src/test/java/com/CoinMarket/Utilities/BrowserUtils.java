@@ -53,8 +53,13 @@ public class BrowserUtils {
             }
         }
     }
-
-
+    public static void clickWithJS(WebElement element) {
+        ((JavascriptExecutor)Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", element);
+    }
+    public static void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
     public  static void clickWithWait(By by, int attempts) {
         int counter = 0;
         //click on element as many as you specified in attempts parameter
