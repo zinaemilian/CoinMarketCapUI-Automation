@@ -17,6 +17,6 @@ Important: This framework has only been tested on a Mac.
 to run the test framework
 --first build project
 -- go to the feature file and  click 'run test'
---or go run from Run Configuration selecting Feature:PageContent
+--or go run from Run Configuration and select Feature:PageContent
 
 
