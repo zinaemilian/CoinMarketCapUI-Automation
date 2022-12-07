@@ -103,7 +103,7 @@ public class BrowserUtils {
         while (itertorAllProdcs.hasNext()) {
             WebElement product = itertorAllProdcs.next();
             if (product.getText().toUpperCase().contains(optionText.toUpperCase())) {
-                System.out.println(product.getText());
+                
                 product.click();
             }
         }
@@ -115,7 +115,7 @@ public class BrowserUtils {
         while (itertorAllProdcs.hasNext()) {
             WebElement product = itertorAllProdcs.next();
             if (product.getText().toUpperCase().contentEquals(optionText.toUpperCase())) {
-                System.out.println(product.getText());
+                
                 product.click();
                 break;
             }
