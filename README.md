@@ -13,8 +13,10 @@ Framework Technologies;
 Selenium
 Cucumber
 
-Important: This framework has only been tested on a Mac. If possible please use a to run the test framework
+Important: This framework has only been tested on a Mac.
+to run the test framework
+--first build project
+-- go to the feature file and  click 'run test'
+--or go run from Run Configuration selecting Feature:PageContent
 
-In order to execute the automation suite navigate to the Project directory within a Terminal window and run the command: 'mvn clean test'.
 
-The Endpoint do not return standard response.
