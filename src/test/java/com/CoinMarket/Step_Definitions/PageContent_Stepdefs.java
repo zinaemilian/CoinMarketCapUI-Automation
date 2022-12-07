@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageContent_Stepdefs {
-    HomePage homePage =new HomePage();
+  HomePage homePage =new HomePage();
     private List<CryptoCurrency> tableDateByRow20;
     private List<CryptoCurrency> tableDateAfterFilters;
 
@@ -37,7 +37,9 @@ public class PageContent_Stepdefs {
     }
     @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page before applying filters")
     public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageBeforeApplyingFilters() {
+       BrowserUtils.waitFor(5);
         tableDateByRow20 = homePage.getTableData();
+        System.out.println(tableDateByRow20.size());
     }
     @And("I filter by {string} - {string}")
     public void iFilterByAlgorithmPoW(String algorytm, String poW)  {
@@ -79,17 +81,19 @@ public class PageContent_Stepdefs {
         tableDateByRow20 = homePage.getTableData();
         System.out.println(tableDateByRow20.size());
     }
-    @And("I capture Price and MarketCap for {string} cryptocurrency from the content of the page after applying filters")
-    public void iCapturePriceAndMarketCapForCryptocurrencyFromTheContentOfThePageAfterApplyingFilters(String bitcoin) throws InterruptedException {
-        BrowserUtils.waitFor(2);
-        BrowserUtils.ScrollDownAndUp();
-
+    @And("I capture Name,Price and MarketCap for cryptocurrencies from the page after filters")
+    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromThePageAfterFilters() {
+        homePage.clickUp();
+        BrowserUtils.waitFor(3);
         tableDateAfterFilters = homePage.getTableData();
         System.out.println(tableDateAfterFilters.size());
     }
 
     @Then("I should see that number of contents is decreased")
     public void iShouldSeeThatNumberOfContentsIsDecreased() {
-        //Assert.assertTrue(tableDateAfterFilters.size()<tableDateByRow20.size());
+       boolean check=  tableDateByRow20.size()>tableDateAfterFilters.size();
+       Assert.assertTrue("The content of Page ",check);
     }
+
+
 }
