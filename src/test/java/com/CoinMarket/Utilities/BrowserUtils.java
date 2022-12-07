@@ -32,13 +32,11 @@ public class BrowserUtils {
         }
     }
 
-  
     public  static WebElement waitForVisibility(WebElement element, Duration timeToWaitInSec) {
         WebDriverWait wait = new WebDriverWait(Driver.get(), timeToWaitInSec);
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    
    
     public static WebElement waitForClickablility(WebElement element, Duration timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.get(), timeout);
@@ -56,10 +54,7 @@ public class BrowserUtils {
         }
     }
 
- 
 
- 
- 
     public  static void clickWithWait(By by, int attempts) {
         int counter = 0;
         //click on element as many as you specified in attempts parameter
@@ -78,14 +73,7 @@ public class BrowserUtils {
             }
         }
     }
-
-
-
-
-
-
-
-    public static void ScrollDownAndUp() throws InterruptedException {
+      public static void ScrollDownAndUp() throws InterruptedException {
 
 
         JavascriptExecutor jse = (JavascriptExecutor)Driver.get();
@@ -129,6 +117,4 @@ public class BrowserUtils {
         }
 
     }
- 
-
 }
