@@ -24,18 +24,9 @@ public class Hooks {
             scenario.attach(screenshot,"image/png","screenshot");
         }
 
-       // Driver.closeDriver();
+        Driver.closeDriver();
 
     }
 
-    @Before("@abc")
-    public void setUpdb(){
-        System.out.println("\tconnecting to database...");
-    }
 
-    @After("@abc")
-    public void closeDb(){
-        System.out.println("\tdisconnecting to database...");
-
-    }
 }
