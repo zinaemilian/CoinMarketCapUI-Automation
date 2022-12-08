@@ -85,16 +85,18 @@ public class BrowserUtils {
 
         for (int i = 0; i < 10; i++) {
             Thread.sleep(1000);
-            jse.executeScript("window.scrollBy(0,250)");
+            jse.executeScript("window.scrollBy(100,250)");
 
         }
         for (int i = 0; i < 10; i++) {
             Thread.sleep(1000);
 
-            jse.executeScript("window.scrollBy(0,-250)");
+            jse.executeScript("window.scrollBy(100,-250)");
         }
 
     }
+
+
 
    
     public static void ClickBtnOption(String optionText, List<WebElement> optionWE) {
@@ -103,8 +105,9 @@ public class BrowserUtils {
         while (itertorAllProdcs.hasNext()) {
             WebElement product = itertorAllProdcs.next();
             if (product.getText().toUpperCase().contains(optionText.toUpperCase())) {
-                
-                product.click();
+
+              clickWithJS(product);
+              //product.click();
             }
         }
 
@@ -115,8 +118,8 @@ public class BrowserUtils {
         while (itertorAllProdcs.hasNext()) {
             WebElement product = itertorAllProdcs.next();
             if (product.getText().toUpperCase().contentEquals(optionText.toUpperCase())) {
-                
-                product.click();
+                clickWithJS(product);
+               // product.click();
                 break;
             }
         }
@@ -133,6 +136,16 @@ public class BrowserUtils {
             wait.until(expectation);
         } catch (Throwable error) {
             error.printStackTrace();
+        }
+    }
+    public void waitForJavascript(int maxWaitMillis, int pollDelimiter) throws InterruptedException {
+        double startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() < startTime + maxWaitMillis) {
+            String prevState = Driver.get().getPageSource();
+            Thread.sleep(pollDelimiter); // <-- would need to wrap in a try catch
+            if (prevState.equals(Driver.get().getPageSource())) {
+                return;
+            }
         }
     }
 }

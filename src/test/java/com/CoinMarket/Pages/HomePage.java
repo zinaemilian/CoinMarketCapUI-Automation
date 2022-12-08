@@ -93,7 +93,8 @@ public class HomePage extends BasePage {
     }
 
     public void filterByNumberOfRows(String rowNumber) {
-        showRows.click();
+      BrowserUtils.clickWithJS(showRows);
+      //  showRows.click();
         BrowserUtils.waitFor(3);
         BrowserUtils.ClickBtnOption(rowNumber, rows);
 
@@ -178,13 +179,13 @@ public class HomePage extends BasePage {
         List<WebElement> elements = tableContent.findElements(By.tagName("tr"));
 
         for (int i = 1; i<= elements.size(); i++) {
-           BrowserUtils.waitForPageToLoad(Duration.ofSeconds(3));
+
             try {
                 CryptoCurrency currency = getCryptoCurrency(i);
                 data.add(currency);
             } catch (Exception e) {
                 try {
-                    BrowserUtils.waitFor(2);
+                   // BrowserUtils.waitFor(2);
                    BrowserUtils.ScrollDownAndUp();
                     CryptoCurrency currency = getCryptoCurrency(i);
                     data.add(currency);
