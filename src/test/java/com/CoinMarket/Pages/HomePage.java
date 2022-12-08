@@ -178,7 +178,7 @@ public class HomePage extends BasePage {
         List<WebElement> elements = tableContent.findElements(By.tagName("tr"));
 
         for (int i = 1; i<= elements.size(); i++) {
-
+           BrowserUtils.waitForPageToLoad(Duration.ofSeconds(3));
             try {
                 CryptoCurrency currency = getCryptoCurrency(i);
                 data.add(currency);
