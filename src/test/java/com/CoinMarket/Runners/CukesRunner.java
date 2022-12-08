@@ -10,10 +10,8 @@ import org.junit.runner.RunWith;
       plugin = {"json:target/cucumber.json",
               "html:target/default-html-reports",
                 "rerun:target/rerun.txt"},
-       features = "src/test/resources/Features",
+       features = "src/test/resources/Features/PageContent.feature",
        glue = "com/CoinMarket/Step_Definitions",
-        dryRun = true,
-        tags = "@Smoke",
         publish = true
 )
 public class CukesRunner {
