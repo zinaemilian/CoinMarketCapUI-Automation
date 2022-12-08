@@ -16,6 +16,9 @@ Cucumber
 Important: This framework has only been tested on a Mac.
 to run the test framework
 --first build project
+--mvn cleav on terminal
+
+-- go to path  src/test/java/com/CoinMarket/Runners/CukesRunner.java  and run Cukes.Runner
 -- go to the feature file and  click 'run test'
 --or go run from Run Configuration and select Feature:PageContent
 
