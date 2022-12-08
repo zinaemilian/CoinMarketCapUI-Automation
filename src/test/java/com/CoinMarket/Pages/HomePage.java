@@ -185,7 +185,7 @@ public class HomePage extends BasePage {
             } catch (Exception e) {
                 try {
                     BrowserUtils.waitFor(2);
-                    BrowserUtils.ScrollDown();
+                   BrowserUtils.ScrollDownAndUp();
                     CryptoCurrency currency = getCryptoCurrency(i);
                     data.add(currency);
                 } catch (Exception ex) {
