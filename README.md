@@ -20,7 +20,6 @@ to run the test framework
 -- mvn verify
 //please see the reports under path /target 
  -- go to path  src/test/java/com/CoinMarket/Runners/CukesRunner.java  and run Cukes.Runner
--- go to the feature file and  click 'run test'
---or go run from Run Configuration and select Feature:PageContent
+
 
 
