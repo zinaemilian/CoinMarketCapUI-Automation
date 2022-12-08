@@ -85,13 +85,13 @@ public class BrowserUtils {
 
         for (int i = 0; i < 10; i++) {
             Thread.sleep(1000);
-            jse.executeScript("window.scrollBy(0,250)");
+            jse.executeScript("window.scrollBy(100,250)");
 
         }
         for (int i = 0; i < 10; i++) {
             Thread.sleep(1000);
 
-            jse.executeScript("window.scrollBy(0,-250)");
+            jse.executeScript("window.scrollBy(100,-250)");
         }
 
     }
