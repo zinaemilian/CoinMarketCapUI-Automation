@@ -20,10 +20,8 @@ import java.util.Locale;
 public class HomePage extends BasePage {
     private static HomePage login;
 
-  @FindBy(xpath = "/html/body/div[3]/div[2]/div[4]/button")
+    @FindBy(xpath = "/html/body/div[3]/div[2]/div[4]/button")
     public WebElement nextBtn;
-    @FindBy(css = "script[data-nscript=lazyOnload]")
-    public WebElement exitPrivacyPolicy;
     @FindBy(xpath = "//button[contains(@class,'jgNqHP')]")
     public List<WebElement> rows;
     @FindBy(xpath = "(//button[contains(@color,'var(--primary-color-black)')])[2]")
@@ -34,8 +32,6 @@ public class HomePage extends BasePage {
     public WebElement tableContent;
     @FindBy(xpath = "//*[@id=\"__next\"]/div/div[1]/div[2]/div/div[1]/div[3]/div[2]/div[3]/div[1]/div")
     public WebElement showRows;
-    @FindBy(css = "span.icon-Chevron-up")
-    public WebElement pageup;
     @FindBy(xpath = "/html/body/div[3]/div[2]/div[4]/button")
     public WebElement goItBtn;
     @FindBy(xpath = "//*[@id=\"cmc-cookie-policy-banner\"]/div[2]")
