@@ -39,10 +39,9 @@ public class PageContent_Stepdefs {
     public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageBeforeApplyingFilters() {
 
         tableDateByRow20 = homePage.getTableData();
-        System.out.println(tableDateByRow20.size());
     }
     @And("I filter by {string} - {string}")
-    public void iFilterByAlgorithmPoW(String algorytm, String poW)  {
+    public void iFilterByAlgorithmPoW(String algorytm, String poW) throws InterruptedException {
 
         homePage.ApplyFilters();
         homePage.ApplyFilters(algorytm);
@@ -56,16 +55,17 @@ public class PageContent_Stepdefs {
 
     @And("I toggle Mineable")
     public void iToggleMineable() {
-
         homePage.ClickMineable();
     }
     @And("I select All Cryptocurrencies")
     public void iSelectAllCryptocurrencies() {
+
         homePage.ClickAllCryp();
     }
 
     @And("I select {string} from filter options")
     public void iSelectFromFilterOptions(String coins) {
+
         homePage.SelectCoin(coins);
     }
 
@@ -76,19 +76,6 @@ public class PageContent_Stepdefs {
         homePage.ApplyPriceRageFilter();
         homePage.ApplyShowResults();
     }
-    @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page after applying filters")
-    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageAfterApplyingFilters() {
-
-        tableDateByRow20 = homePage.getTableData();
-       
-    }
-    @And("I capture Name,Price and MarketCap for cryptocurrencies from the page after filters")
-    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromThePageAfterFilters() {
-        homePage.clickUp();
-        BrowserUtils.waitFor(3);
-        tableDateAfterFilters = homePage.getTableData();
-        
-    }
 
     @Then("I should see that number of contents is decreased")
     public void iShouldSeeThatNumberOfContentsIsDecreased() {
@@ -96,4 +83,11 @@ public class PageContent_Stepdefs {
     }
 
 
+    @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page after applying filters")
+    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageAfterApplyingFilters() {
+        homePage.clickUp();
+        BrowserUtils.waitFor(5);
+        tableDateAfterFilters = homePage.getTableData();
+
+    }
 }

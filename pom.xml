@@ -11,8 +11,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>18</maven.compiler.target>
-        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
     </properties>
     <dependencies>
         <dependency>
@@ -64,7 +64,6 @@
                     <runOrder>Alphabetical</runOrder>
                     <includes>
                         <include>**/*CukesRunner.java</include>
-                        <include>**/*FailedTestRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -91,12 +90,9 @@
                 </executions>
             </plugin>
             <plugin>
-
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.10.1</version>
-
-
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>

@@ -54,7 +54,7 @@ public class HomePage extends BasePage {
     public WebElement applyPriceRangeFilter;
     @FindBy(xpath = "//button[text()='Show results']")
     public WebElement showResults;
-    @FindBy(className = "icon-Chevron-up")
+    @FindBy(xpath = "//*[@id=\"__next\"]/div/div[2]/div/div/span")
     public WebElement pageUpArrrow;
 
 
@@ -86,9 +86,10 @@ public class HomePage extends BasePage {
     }
 
     public void ApplyFilters() {
-
-        pageUpArrrow.click();
-        BrowserUtils.clickWithJS(Driver.get().findElement( By.xpath("(//button[contains(@class,'sc-a4a6801b-0 gNHIvn sc-c8c9e58f-0 eTWSGQ table-control-filter')])[2]")));
+      BrowserUtils.waitForVisibility(pageUpArrrow,Duration.ofSeconds(3))   ;
+      pageUpArrrow.click();
+//        pageUpArrrow.click();
+        Driver.get().findElement( By.xpath("//*[@id=\"__next\"]/div/div[1]/div[2]/div/div[1]/div[3]/div[2]/div[3]/div[2]/button[1]")).click();
 
     }
 
@@ -100,14 +101,14 @@ public class HomePage extends BasePage {
 
     }
 
-    public void ApplyFilters(String filterName) {
+    public void ApplyFilters(String filterName) throws InterruptedException {
 
-        BrowserUtils.waitForPageToLoad(Duration.ofSeconds(3));
+        BrowserUtils.ScrollUp();
+        System.out.println("pageup arrow second time next add alogithm");
         BrowserUtils.ClickAddFilterOption(filterName, filterOptions);
     }
 
     public void ApplyAlgorithms(String algorithmName) {
-        BrowserUtils.waitFor(3);
         BrowserUtils.ByExactOption(algorithmName, algorithOptns);
     }
 
@@ -177,16 +178,14 @@ public class HomePage extends BasePage {
     public List<CryptoCurrency> getTableData() {
         List<CryptoCurrency> data = new ArrayList<>();
         List<WebElement> elements = tableContent.findElements(By.xpath("//tbody//tr"));
-        BrowserUtils.waitForPageToLoad(Duration.ofSeconds(1));
+        BrowserUtils.waitForPageToLoad(Duration.ofSeconds(3));
         for (int i = 1; i<= elements.size(); i++) {
             try {
                 CryptoCurrency currency = getCryptoCurrency(i);
                 data.add(currency);
             } catch (Exception e) {
                 try {
-                    //BrowserUtils.waitFor(2);
-
-                   BrowserUtils.ScrollDown();
+                    if(elements.size()>2){BrowserUtils.ScrollDown();}else{BrowserUtils.ScrollUp();}
                     CryptoCurrency currency = getCryptoCurrency(i);
                     data.add(currency);
                 } catch (Exception ex) {

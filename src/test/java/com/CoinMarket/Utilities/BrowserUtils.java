@@ -15,14 +15,6 @@ import java.util.List;
 
 public class BrowserUtils {
 
-    public static List<String> getElementsText(List<WebElement> list) {
-        List<String> elemTexts = new ArrayList<>();
-        for (WebElement el : list) {
-            elemTexts.add(el.getText());
-        }
-        return elemTexts;
-    }
-
 
     public static void waitFor(int seconds) {
         try {
@@ -63,43 +55,7 @@ public class BrowserUtils {
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public static void clickWithWait(By by, int attempts) {
-        int counter = 0;
-        //click on element as many as you specified in attempts parameter
-        while (counter < attempts) {
-            try {
 
-                clickWithJS(Driver.get().findElement(by));
-
-                break;
-            } catch (WebDriverException e) {
-
-                e.printStackTrace();
-                ++counter;
-
-                waitFor(1);
-            }
-        }
-    }
-
-    public static void ScrollDownAndUp() throws InterruptedException {
-
-
-        JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
-
-        for (int i = 0; i < 10; i++) {
-            Thread.sleep(1000);
-            jse.executeScript("window.scrollBy(100,250)");
-
-        }
-        for (int i = 0; i < 10; i++) {
-            Thread.sleep(1000);
-
-            jse.executeScript("window.scrollBy(100,-250)");
-        }
-
-    }
-//js.executeScript("window.scrollBy(0,600)");
 public static void ScrollDown() throws InterruptedException {
 
 
@@ -107,11 +63,20 @@ public static void ScrollDown() throws InterruptedException {
 
     for (int i = 0; i < 10; i++) {
         Thread.sleep(1000);
-        jse.executeScript("window.scrollBy(0,350)");
-         waitFor(5);
+        jse.executeScript("window.scrollBy(100,350)");
 
 
     }
+    }public static void ScrollUp() throws InterruptedException {
+
+
+    JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+
+    for (int i = 0; i < 10; i++) {
+        Thread.sleep(1000);
+        jse.executeScript("window.scrollBy(0,-250)");
+
+     }
     }
 
     public static void ClickAddFilterOption(String optionText, List<WebElement> optionWE) {
@@ -120,24 +85,15 @@ public static void ScrollDown() throws InterruptedException {
         while (itertorAllProdcs.hasNext()) {
             WebElement product = itertorAllProdcs.next();
             if (product.getText().toUpperCase().contains(optionText.toUpperCase())) {
-                clickWithJS(product);
-                //product.click();
+                waitForVisibility(product,Duration.ofSeconds(5));
+                waitFor(3);
+                product.click();
+                break;
             }
         }
 
    }
-   //public static void ClickAddFilterOptions(String optionText, List<WebElement> optionWE) {
-//        List<String> options = new ArrayList<String>();
-//        Iterator<WebElement> itertorAllProdcs = optionWE.iterator();
-//        while (itertorAllProdcs.hasNext()) {
-//            WebElement product = itertorAllProdcs.next();
-//            if (product.getText().toUpperCase().contains(optionText.toUpperCase())) {
-//                clickWithJS(product);
-//                //product.click();
-//            }
-//        }
-//
-//    }
+
 
     public static void ByExactOption(String optionText, List<WebElement> optionWE) {
         List<String> options = new ArrayList<String>();
@@ -145,8 +101,8 @@ public static void ScrollDown() throws InterruptedException {
         while (itertorAllProdcs.hasNext()) {
             WebElement product = itertorAllProdcs.next();
             if (product.getText().toUpperCase().contentEquals(optionText.toUpperCase())) {
-                clickWithJS(product);
-                //product.click();
+                waitForVisibility(product,Duration.ofSeconds(5));
+                product.click();
                 break;
             }
         }
