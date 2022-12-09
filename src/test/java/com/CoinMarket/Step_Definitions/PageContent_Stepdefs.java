@@ -37,7 +37,7 @@ public class PageContent_Stepdefs {
     }
     @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page before applying filters")
     public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageBeforeApplyingFilters() {
-       BrowserUtils.waitFor(5);
+
         tableDateByRow20 = homePage.getTableData();
         System.out.println(tableDateByRow20.size());
     }
@@ -78,6 +78,7 @@ public class PageContent_Stepdefs {
     }
     @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page after applying filters")
     public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageAfterApplyingFilters() {
+
         tableDateByRow20 = homePage.getTableData();
        
     }

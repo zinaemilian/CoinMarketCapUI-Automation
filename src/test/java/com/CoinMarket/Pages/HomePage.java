@@ -88,12 +88,13 @@ public class HomePage extends BasePage {
     public void ApplyFilters() {
 
 
-        BrowserUtils.clickWithWait(By.xpath("(//button[contains(@class,'sc-a4a6801b-0 gNHIvn sc-c8c9e58f-0 eTWSGQ table-control-filter')])[2]"), 5);
+        BrowserUtils.clickWithJS(Driver.get().findElement( By.xpath("(//button[contains(@class,'sc-a4a6801b-0 gNHIvn sc-c8c9e58f-0 eTWSGQ table-control-filter')])[2]")));
 
     }
 
     public void filterByNumberOfRows(String rowNumber) {
-        showRows.click();
+
+        BrowserUtils.clickWithJS(showRows);
         BrowserUtils.waitFor(3);
         BrowserUtils.ClickBtnOption(rowNumber, rows);
 
@@ -101,7 +102,7 @@ public class HomePage extends BasePage {
 
     public void ApplyFilters(String filterName) {
 
-        BrowserUtils.waitFor(4);
+        BrowserUtils.waitForPageToLoad(Duration.ofSeconds(3));
         BrowserUtils.ClickBtnOption(filterName, filterOptions);
     }
 
@@ -113,13 +114,13 @@ public class HomePage extends BasePage {
     public void AddFilter() {
         BrowserUtils.waitFor(3);
         BrowserUtils.waitForClickablility(addFilterBtn, Duration.ofSeconds(5));
-        addFilterBtn.click();
+        BrowserUtils.clickWithJS(addFilterBtn);
     }
 
     public void ClickMineable() {
 
         BrowserUtils.waitForClickablility(toggleMnineable, Duration.ofSeconds(5));
-        toggleMnineable.click();
+        BrowserUtils.clickWithJS(toggleMnineable);
        
     }
 
@@ -176,9 +177,8 @@ public class HomePage extends BasePage {
     public List<CryptoCurrency> getTableData() {
         List<CryptoCurrency> data = new ArrayList<>();
         List<WebElement> elements = tableContent.findElements(By.tagName("tr"));
-
+        BrowserUtils.waitForPageToLoad(Duration.ofSeconds(5));
         for (int i = 1; i<= elements.size(); i++) {
-           BrowserUtils.waitForPageToLoad(Duration.ofSeconds(3));
             try {
                 CryptoCurrency currency = getCryptoCurrency(i);
                 data.add(currency);
