@@ -46,7 +46,6 @@ public class PageContent_Stepdefs {
         homePage.ApplyFilters();
         homePage.ApplyFilters(algorytm);
         homePage.ApplyAlgorithms(poW);
-
     }
     @And("I follow by + Filter")
     public void iFollowByFilter() {
@@ -76,18 +75,20 @@ public class PageContent_Stepdefs {
         homePage.ApplyPriceRageFilter();
         homePage.ApplyShowResults();
     }
+    @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page after applying filters")
+    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageAfterApplyingFilters() throws InterruptedException {
 
+         homePage.clickUp();
+         BrowserUtils.waitFor(3);
+        tableDateAfterFilters = homePage.getTableData();
+
+
+    }
     @Then("I should see that number of contents is decreased")
     public void iShouldSeeThatNumberOfContentsIsDecreased() {
       Assert.assertNotSame(tableDateAfterFilters,tableDateByRow20);
     }
 
 
-    @And("I capture Name,Price and MarketCap for cryptocurrencies from the content of the page after applying filters")
-    public void iCaptureNamePriceAndMarketCapForCryptocurrenciesFromTheContentOfThePageAfterApplyingFilters() {
-        homePage.clickUp();
-        BrowserUtils.waitFor(5);
-        tableDateAfterFilters = homePage.getTableData();
 
-    }
 }
