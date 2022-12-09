@@ -99,9 +99,22 @@ public class BrowserUtils {
         }
 
     }
+//js.executeScript("window.scrollBy(0,600)");
+public static void ScrollDown() throws InterruptedException {
 
 
-    public static void ClickBtnOption(String optionText, List<WebElement> optionWE) {
+    JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+
+    for (int i = 0; i < 10; i++) {
+        Thread.sleep(1000);
+        jse.executeScript("window.scrollBy(0,350)");
+         waitFor(5);
+
+
+    }
+    }
+
+    public static void ClickAddFilterOption(String optionText, List<WebElement> optionWE) {
         List<String> options = new ArrayList<String>();
         Iterator<WebElement> itertorAllProdcs = optionWE.iterator();
         while (itertorAllProdcs.hasNext()) {
@@ -112,7 +125,19 @@ public class BrowserUtils {
             }
         }
 
-    }
+   }
+   //public static void ClickAddFilterOptions(String optionText, List<WebElement> optionWE) {
+//        List<String> options = new ArrayList<String>();
+//        Iterator<WebElement> itertorAllProdcs = optionWE.iterator();
+//        while (itertorAllProdcs.hasNext()) {
+//            WebElement product = itertorAllProdcs.next();
+//            if (product.getText().toUpperCase().contains(optionText.toUpperCase())) {
+//                clickWithJS(product);
+//                //product.click();
+//            }
+//        }
+//
+//    }
 
     public static void ByExactOption(String optionText, List<WebElement> optionWE) {
         List<String> options = new ArrayList<String>();

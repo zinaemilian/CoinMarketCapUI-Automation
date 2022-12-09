@@ -24,7 +24,7 @@ public class HomePage extends BasePage {
     public WebElement nextBtn;
     @FindBy(xpath = "//button[contains(@class,'jgNqHP')]")
     public List<WebElement> rows;
-    @FindBy(xpath = "(//button[contains(@color,'var(--primary-color-black)')])[2]")
+    @FindBy(xpath = "//li[contains(@class,'filter')]//div//span//button")
     public List<WebElement> filterOptions;
     @FindBy(xpath = "//li")
     public List<WebElement> algorithOptns;
@@ -54,7 +54,7 @@ public class HomePage extends BasePage {
     public WebElement applyPriceRangeFilter;
     @FindBy(xpath = "//button[text()='Show results']")
     public WebElement showResults;
-    @FindBy(css = "span.icon-Chevron-up")
+    @FindBy(className = "icon-Chevron-up")
     public WebElement pageUpArrrow;
 
 
@@ -87,7 +87,7 @@ public class HomePage extends BasePage {
 
     public void ApplyFilters() {
 
-
+        pageUpArrrow.click();
         BrowserUtils.clickWithJS(Driver.get().findElement( By.xpath("(//button[contains(@class,'sc-a4a6801b-0 gNHIvn sc-c8c9e58f-0 eTWSGQ table-control-filter')])[2]")));
 
     }
@@ -96,14 +96,14 @@ public class HomePage extends BasePage {
 
         BrowserUtils.clickWithJS(showRows);
         BrowserUtils.waitFor(3);
-        BrowserUtils.ClickBtnOption(rowNumber, rows);
+        BrowserUtils.ClickAddFilterOption(rowNumber, rows);
 
     }
 
     public void ApplyFilters(String filterName) {
 
         BrowserUtils.waitForPageToLoad(Duration.ofSeconds(3));
-        BrowserUtils.ClickBtnOption(filterName, filterOptions);
+        BrowserUtils.ClickAddFilterOption(filterName, filterOptions);
     }
 
     public void ApplyAlgorithms(String algorithmName) {
@@ -176,16 +176,17 @@ public class HomePage extends BasePage {
 
     public List<CryptoCurrency> getTableData() {
         List<CryptoCurrency> data = new ArrayList<>();
-        List<WebElement> elements = tableContent.findElements(By.tagName("tr"));
-        BrowserUtils.waitForPageToLoad(Duration.ofSeconds(5));
+        List<WebElement> elements = tableContent.findElements(By.xpath("//tbody//tr"));
+        BrowserUtils.waitForPageToLoad(Duration.ofSeconds(1));
         for (int i = 1; i<= elements.size(); i++) {
             try {
                 CryptoCurrency currency = getCryptoCurrency(i);
                 data.add(currency);
             } catch (Exception e) {
                 try {
-                    BrowserUtils.waitFor(2);
-                   BrowserUtils.ScrollDownAndUp();
+                    //BrowserUtils.waitFor(2);
+
+                   BrowserUtils.ScrollDown();
                     CryptoCurrency currency = getCryptoCurrency(i);
                     data.add(currency);
                 } catch (Exception ex) {
