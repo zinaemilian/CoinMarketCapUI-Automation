@@ -104,7 +104,6 @@ public class HomePage extends BasePage {
     public void ApplyFilters(String filterName) throws InterruptedException {
 
         BrowserUtils.ScrollUp();
-        System.out.println("pageup arrow second time next add alogithm");
         BrowserUtils.ClickAddFilterOption(filterName, filterOptions);
     }
 
@@ -185,7 +184,7 @@ public class HomePage extends BasePage {
                 data.add(currency);
             } catch (Exception e) {
                 try {
-                    if(elements.size()>2){BrowserUtils.ScrollDown();}else{BrowserUtils.ScrollUp();}
+                    if(elements.size()>2){BrowserUtils.ScrollDown();}else{pageUpArrrow.click();}
                     CryptoCurrency currency = getCryptoCurrency(i);
                     data.add(currency);
                 } catch (Exception ex) {

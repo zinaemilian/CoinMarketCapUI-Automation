@@ -67,14 +67,15 @@ public static void ScrollDown() throws InterruptedException {
 
 
     }
-    }public static void ScrollUp() throws InterruptedException {
+    }
+    public static void ScrollUp() throws InterruptedException {
 
 
     JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
 
     for (int i = 0; i < 10; i++) {
         Thread.sleep(1000);
-        jse.executeScript("window.scrollBy(0,-250)");
+        jse.executeScript("window.scrollBy(0,-350)");
 
      }
     }
