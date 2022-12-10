@@ -68,7 +68,7 @@ public class PageContent_Stepdefs {
         homePage.SelectCoin(coins);
     }
 
-    @And("I select prize and set min value to {string} and max {string}")
+    @And("I select price and set min value to {string} and max {string}")
     public void iSelectPrizeAndSetMinValueToAndMax(String min, String max) {
         homePage.SelectPrice();
         homePage.senKeysPriceRange(min,max);
