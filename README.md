@@ -17,7 +17,7 @@ Cucumber
 Important: This framework has only been tested on a Mac.
 Run the test framework
 first -> make sure that your chrome browser is updated with the latest version
---fsecond-> build project
+--second-> build project
 -- than go to path  src/test/java/com/CoinMarket/Runners/CukesRunner.java  and click run on Cukes.Runner class
 or
 on terminal comands
