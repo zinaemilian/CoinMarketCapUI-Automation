@@ -26,7 +26,9 @@ on terminal comands
 Reports
 //see the logs and click the url displaying on the log in order to see Cucumber Reports 
 or
-//go to the path target/MyReports after finishing execution 
+//go to the path target after finishing execution and 'open with finder' the html reports in order to make sure the html report are displaying on the browser
+
+
 
 
 
