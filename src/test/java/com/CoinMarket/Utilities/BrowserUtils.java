@@ -1,6 +1,6 @@
 package com.CoinMarket.Utilities;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -85,7 +85,7 @@ public static void ScrollDown() throws InterruptedException {
         Iterator<WebElement> itertorAllProdcs = optionWE.iterator();
         while (itertorAllProdcs.hasNext()) {
             WebElement product = itertorAllProdcs.next();
-            if (product.getText().toUpperCase().contains(optionText.toUpperCase())) {
+            if (product.getText().toUpperCase().contentEquals(optionText.toUpperCase())) {
                 waitForVisibility(product,Duration.ofSeconds(5));
                 waitFor(3);
                 product.click();
@@ -94,21 +94,6 @@ public static void ScrollDown() throws InterruptedException {
         }
 
    }
-
-
-    public static void ByExactOption(String optionText, List<WebElement> optionWE) {
-        List<String> options = new ArrayList<String>();
-        Iterator<WebElement> itertorAllProdcs = optionWE.iterator();
-        while (itertorAllProdcs.hasNext()) {
-            WebElement product = itertorAllProdcs.next();
-            if (product.getText().toUpperCase().contentEquals(optionText.toUpperCase())) {
-                waitForVisibility(product,Duration.ofSeconds(5));
-                product.click();
-                break;
-            }
-        }
-
-    }
 
     public static void waitForPageToLoad(Duration timeOutInSeconds) {
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
@@ -124,5 +109,21 @@ public static void ScrollDown() throws InterruptedException {
         }
 
     }
+    public static void clickWithWait(By by, int attempts) {
+        int counter = 0;
+        while (counter < attempts) {
+            try {
+                clickWithJS(Driver.get().findElement(by));
+                break;
+            } catch (WebDriverException e) {
 
+                e.printStackTrace();
+                ++counter;
+                waitFor(1);
+            }
+        }
+    }
+    public static void doubleClick(WebElement element) {
+        new Actions(Driver.get()).doubleClick(element).build().perform();
+    }
 }
